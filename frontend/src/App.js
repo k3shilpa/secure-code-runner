@@ -4,7 +4,15 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  const [code, setCode] = useState("print('Hello, World!')");
+  const templates = {
+    python: "print('Hello, World!')",
+    c: "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
+    cpp: "#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hello, World!\" << endl;\n    return 0;\n}",
+    java: "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+  };
+
+  const [language, setLanguage] = useState("python");
+  const [code, setCode] = useState(templates.python);
   const [stdin, setStdin] = useState("");
   const [stdout, setStdout] = useState("");
   const [stderr, setStderr] = useState("");
@@ -18,7 +26,7 @@ function App() {
       const response = await axios.post("http://127.0.0.1:8000/run", {
         code,
         stdin,
-        language: "python",
+        language,
       });
       setStdout(response.data.stdout);
       setStderr(response.data.stderr);
@@ -26,6 +34,12 @@ function App() {
       setStderr("⚠️ Network/Server Error: " + error.message);
     }
     setLoading(false);
+  };
+
+  const handleLanguageChange = (e) => {
+    const newLang = e.target.value;
+    setLanguage(newLang);
+    setCode(templates[newLang]); // ✅ load Hello World template automatically
   };
 
   return (
@@ -41,7 +55,12 @@ function App() {
         <div className="sidebar">
           <h3>Files</h3>
           <ul>
-            <li className="active">main.py</li>
+            <li className="active">
+              {language === "python" && "main.py"}
+              {language === "c" && "main.c"}
+              {language === "cpp" && "main.cpp"}
+              {language === "java" && "Main.java"}
+            </li>
           </ul>
         </div>
 
@@ -49,13 +68,22 @@ function App() {
         <div className="editor-console">
           <div className="editor-section">
             <div className="toolbar">
+              {/* ✅ Language Dropdown */}
+              <select value={language} onChange={handleLanguageChange}>
+                <option value="python">Python</option>
+                <option value="c">C</option>
+                <option value="cpp">C++</option>
+                <option value="java">Java</option>
+              </select>
+
               <button onClick={runCode} disabled={loading}>
                 {loading ? "Running..." : "Run ▶"}
               </button>
             </div>
+
             <Editor
               height="100%"
-              defaultLanguage="python"
+              language={language === "cpp" ? "cpp" : language}
               value={code}
               onChange={(value) => setCode(value)}
               theme="vs-dark"
