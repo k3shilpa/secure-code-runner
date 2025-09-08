@@ -260,4 +260,27 @@ body {
   padding: 6px;
   font-family: "Fira Code", monospace;
 }
+.suggest-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: #8250df;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.suggest-btn:hover {
+  background: #a371f7;
+}
+
+.suggestion-box {
+  margin-top: 10px;
+  padding: 10px;
+  background: #1e1e1e;
+  border: 1px solid #30363d;
+  border-radius: 4px;
+  color: #79c0ff;
+  white-space: pre-wrap;
+}
 

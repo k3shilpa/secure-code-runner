@@ -2,10 +2,10 @@
 FROM python:3.9-slim
 
 # Create working directory
-WORKDIR /runner
+WORKDIR /workspace
 
 # Copy entrypoint script
-COPY run.py /runner/run.py
+COPY run.py /workspace/run.py
 
 # Default command
-CMD ["python", "/runner/run.py"]
+CMD ["python", "/workspace/run.py"]

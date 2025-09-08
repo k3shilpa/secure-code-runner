@@ -16,12 +16,14 @@ function App() {
   const [stdin, setStdin] = useState("");
   const [stdout, setStdout] = useState("");
   const [stderr, setStderr] = useState("");
+  const [suggestion, setSuggestion] = useState("");
   const [loading, setLoading] = useState(false);
 
   const runCode = async () => {
     setLoading(true);
     setStdout("");
     setStderr("");
+    setSuggestion("");
     try {
       const response = await axios.post("http://127.0.0.1:8000/run", {
         code,
@@ -36,10 +38,23 @@ function App() {
     setLoading(false);
   };
 
+  const getSuggestion = async () => {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/suggest", {
+        code,
+        stderr, // ✅ pass stderr properly
+        language,
+      });
+      setSuggestion(response.data.suggestion);
+    } catch (error) {
+      setSuggestion("⚠️ Could not fetch suggestion: " + error.message);
+    }
+  };
+
   const handleLanguageChange = (e) => {
     const newLang = e.target.value;
     setLanguage(newLang);
-    setCode(templates[newLang]); // ✅ load Hello World template automatically
+    setCode(templates[newLang]);
   };
 
   return (
@@ -103,6 +118,18 @@ function App() {
               value={stdin}
               onChange={(e) => setStdin(e.target.value)}
             />
+
+            {/* ✅ AI Suggestion Panel */}
+            {stderr && (
+              <button className="suggest-btn" onClick={getSuggestion}>
+                💡 Get AI Suggestion
+              </button>
+            )}
+            {suggestion && (
+              <div className="suggestion-box">
+                <strong>AI Suggestion:</strong> {suggestion}
+              </div>
+            )}
           </div>
         </div>
       </div>
