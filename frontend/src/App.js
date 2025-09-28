@@ -1,8 +1,9 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import Editor from "@monaco-editor/react";
 import axios from "axios";
-import * as monaco from "monaco-editor";
 import "./App.css";
+
+const BACKEND_URL = "http://localhost:8000"; // Local backend
 
 function App() {
   const templates = {
@@ -21,7 +22,6 @@ function App() {
   const [aiExplanation, setAiExplanation] = useState("");
 
   const editorRef = useRef(null);
-  const decorationsRef = useRef([]);
 
   // === Run Code ===
   const runCode = async () => {
@@ -31,7 +31,7 @@ function App() {
     setAiExplanation("");
 
     try {
-      const response = await axios.post("http://127.0.0.1:8000/run", {
+      const response = await axios.post(`${BACKEND_URL}/run`, {
         code,
         stdin,
         language,
@@ -39,10 +39,6 @@ function App() {
 
       setStdout(response.data.stdout || "");
       setStderr(response.data.stderr || "");
-
-      if (response.data.stderr) {
-        fetchInlineSuggestion(code, response.data.stderr);
-      }
     } catch (err) {
       setStderr("⚠️ Backend error: " + err.message);
     } finally {
@@ -50,54 +46,11 @@ function App() {
     }
   };
 
-  // === Inline Ghost Suggestion ===
-  const fetchInlineSuggestion = useCallback(
-    async (currentCode, currentError) => {
-      if (!currentError) return;
-      try {
-        const response = await axios.post("http://127.0.0.1:8000/suggest_inline", {
-          code: currentCode,
-          stderr: currentError,
-          language,
-        });
-
-        const fixedCode = response.data.fixed_code || "";
-        const explanation = response.data.explanation || "";
-
-        setAiExplanation(explanation);
-
-        if (editorRef.current && explanation) {
-          const editor = editorRef.current;
-          const lineCount = editor.getModel().getLineCount();
-
-          decorationsRef.current = editor.deltaDecorations(
-            decorationsRef.current,
-            [
-              {
-                range: new monaco.Range(lineCount, 1, lineCount, 1),
-                options: {
-                  isWholeLine: true,
-                  after: {
-                    content: "💡 " + explanation,
-                    inlineClassName: "ghost-text",
-                  },
-                },
-              },
-            ]
-          );
-        }
-      } catch (error) {
-        console.error("Inline suggestion error:", error.message);
-      }
-    },
-    [language]
-  );
-
   // === Suggest Fix Button ===
   const handleSuggestFix = async () => {
     if (!stderr) return;
     try {
-      const response = await axios.post("http://127.0.0.1:8000/suggest", {
+      const response = await axios.post(`${BACKEND_URL}/suggest`, {
         code,
         stderr,
         language,
@@ -112,17 +65,14 @@ function App() {
   const handleApplyFix = async () => {
     if (!stderr) return;
     try {
-      const response = await axios.post("http://127.0.0.1:8000/suggest_inline", {
+      const response = await axios.post(`${BACKEND_URL}/suggest_inline`, {
         code,
         stderr,
         language,
       });
 
-      const fixedCode = response.data.fixed_code || code;
-      const explanation = response.data.explanation || "";
-
-      setCode(fixedCode);
-      setAiExplanation(explanation);
+      setCode(response.data.fixed_code || code);
+      setAiExplanation(response.data.explanation || "");
     } catch (err) {
       setAiExplanation("⚠️ Error applying fix: " + err.message);
     }
@@ -147,10 +97,8 @@ function App() {
         <span className="logo">ai-secure-code-runner</span>
       </div>
       <div className="workspace">
-        {/* Sidebar */}
         <div className="sidebar">Sidebar (future features)</div>
 
-        {/* Editor + Console */}
         <div className="editor-console">
           <div className="editor-section">
             <div className="toolbar">
@@ -164,7 +112,6 @@ function App() {
                 {loading ? "Running..." : "Run ▶"}
               </button>
 
-              {/* Show these only if there's an error */}
               {stderr && (
                 <>
                   <button onClick={handleSuggestFix}>💡 Suggest Fix</button>
@@ -183,7 +130,6 @@ function App() {
             />
           </div>
 
-          {/* AI Suggestions */}
           {aiExplanation && (
             <div className="ai-suggestion">
               <h3>AI Suggestion</h3>
@@ -191,7 +137,6 @@ function App() {
             </div>
           )}
 
-          {/* Console */}
           <div className="console-section">
             <h3>Console</h3>
             {stdout && <pre className="stdout">{stdout}</pre>}

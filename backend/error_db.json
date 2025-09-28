@@ -1,0 +1,1180 @@
+{
+  "python": [
+    {
+      "code": "print('Hello'",
+      "error": "SyntaxError: unexpected EOF while parsing",
+      "explanation": "Python reached the end of the code unexpectedly. Likely missing a closing parenthesis, quote, or colon.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "prit('Hello')",
+      "error": "NameError: name 'prit' is not defined",
+      "explanation": "You used a variable or function that is not defined. Likely a typo.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "1/0",
+      "error": "ZeroDivisionError: division by zero",
+      "explanation": "Cannot divide a number by zero.",
+      "fixed_code": "1/1"
+    },
+    {
+      "code": "def f(): return f()\nf()",
+      "error": "RecursionError: maximum recursion depth exceeded",
+      "explanation": "Infinite recursion detected. Function calls itself indefinitely.",
+      "fixed_code": "def f(n):\n    if n <= 0: return 0\n    return f(n-1)\nf(5)"
+    },
+    {
+      "code": "for i in range(5)\n    print(i)",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the for loop.",
+      "fixed_code": "for i in range(5):\n    print(i)"
+    },
+    {
+      "code": "a = '1'\nb = a + 2",
+      "error": "TypeError: can only concatenate str (not \"int\") to str",
+      "explanation": "Cannot add string and integer directly.",
+      "fixed_code": "a = '1'\nb = int(a) + 2"
+    },
+    {
+      "code": "import math\nmath.sqrt(-1)",
+      "error": "ValueError: math domain error",
+      "explanation": "Square root of a negative number is invalid in real numbers.",
+      "fixed_code": "import math\nmath.sqrt(1)"
+    },
+    {
+      "code": "my_list = [1,2]\nprint(my_list[5])",
+      "error": "IndexError: list index out of range",
+      "explanation": "Accessing a list index that does not exist.",
+      "fixed_code": "my_list = [1,2]\nprint(my_list[1])"
+    },
+    {
+      "code": "my_dict = {}\nprint(my_dict['key'])",
+      "error": "KeyError: 'key'",
+      "explanation": "Accessing a dictionary key that does not exist.",
+      "fixed_code": "my_dict = {'key': 1}\nprint(my_dict['key'])"
+    },
+    {
+      "code": "x = 10\ny = undefined_var",
+      "error": "NameError: name 'undefined_var' is not defined",
+      "explanation": "Variable 'undefined_var' was used before assignment.",
+      "fixed_code": "x = 10\ny = 5"
+    },
+    {
+      "code": "if True\n    print('Hi')",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the if statement.",
+      "fixed_code": "if True:\n    print('Hi')"
+    },
+    {
+      "code": "for i in range(3):\nprint(i)",
+      "error": "IndentationError: expected an indented block",
+      "explanation": "Code block after for loop must be indented.",
+      "fixed_code": "for i in range(3):\n    print(i)"
+    },
+    {
+      "code": "x = int('abc')",
+      "error": "ValueError: invalid literal for int() with base 10: 'abc'",
+      "explanation": "Cannot convert string 'abc' to integer.",
+      "fixed_code": "x = int('123')"
+    },
+    {
+      "code": "print('Hello'",
+      "error": "SyntaxError: unexpected EOF while parsing",
+      "explanation": "Python reached the end of the code unexpectedly. Likely missing a closing parenthesis, quote, or colon.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "prit('Hello')",
+      "error": "NameError: name 'prit' is not defined",
+      "explanation": "You used a variable or function that is not defined. Likely a typo.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "1/0",
+      "error": "ZeroDivisionError: division by zero",
+      "explanation": "Cannot divide a number by zero.",
+      "fixed_code": "1/1"
+    },
+    {
+      "code": "def f(): return f()\nf()",
+      "error": "RecursionError: maximum recursion depth exceeded",
+      "explanation": "Infinite recursion detected. Function calls itself indefinitely.",
+      "fixed_code": "def f(n):\n    if n <= 0: return 0\n    return f(n-1)\nf(5)"
+    },
+    {
+      "code": "for i in range(5)\n    print(i)",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the for loop.",
+      "fixed_code": "for i in range(5):\n    print(i)"
+    },
+    {
+      "code": "a = '1'\nb = a + 2",
+      "error": "TypeError: can only concatenate str (not \"int\") to str",
+      "explanation": "Cannot add string and integer directly.",
+      "fixed_code": "a = '1'\nb = int(a) + 2"
+    },
+    {
+      "code": "import math\nmath.sqrt(-1)",
+      "error": "ValueError: math domain error",
+      "explanation": "Square root of a negative number is invalid in real numbers.",
+      "fixed_code": "import math\nmath.sqrt(1)"
+    },
+    {
+      "code": "my_list = [1,2]\nprint(my_list[5])",
+      "error": "IndexError: list index out of range",
+      "explanation": "Accessing a list index that does not exist.",
+      "fixed_code": "my_list = [1,2]\nprint(my_list[1])"
+    },
+    {
+      "code": "my_dict = {}\nprint(my_dict['key'])",
+      "error": "KeyError: 'key'",
+      "explanation": "Accessing a dictionary key that does not exist.",
+      "fixed_code": "my_dict = {'key': 1}\nprint(my_dict['key'])"
+    },
+    {
+      "code": "x = 10\ny = undefined_var",
+      "error": "NameError: name 'undefined_var' is not defined",
+      "explanation": "Variable 'undefined_var' was used before assignment.",
+      "fixed_code": "x = 10\ny = 5"
+    },
+    {
+      "code": "if True\n    print('Hi')",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the if statement.",
+      "fixed_code": "if True:\n    print('Hi')"
+    },
+    {
+      "code": "for i in range(3):\nprint(i)",
+      "error": "IndentationError: expected an indented block",
+      "explanation": "Code block after for loop must be indented.",
+      "fixed_code": "for i in range(3):\n    print(i)"
+    },
+    {
+      "code": "x = int('abc')",
+      "error": "ValueError: invalid literal for int() with base 10: 'abc'",
+      "explanation": "Cannot convert string 'abc' to integer.",
+      "fixed_code": "x = int('123')"
+    },
+    {
+      "code": "open('nonexistent_file.txt')",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'nonexistent_file.txt'",
+      "explanation": "File path is invalid or file does not exist.",
+      "fixed_code": "open('existing_file.txt')"
+    },
+    {
+      "code": "import non_existing_module",
+      "error": "ModuleNotFoundError: No module named 'non_existing_module'",
+      "explanation": "The module you are trying to import does not exist or is not installed.",
+      "fixed_code": "import math"
+    },
+    {
+      "code": "int('')",
+      "error": "ValueError: invalid literal for int() with base 10: ''",
+      "explanation": "Cannot convert empty string to integer.",
+      "fixed_code": "int('0')"
+    },
+    {
+      "code": "None + 1",
+      "error": "TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'",
+      "explanation": "Cannot perform arithmetic on NoneType.",
+      "fixed_code": "0 + 1"
+    },
+    {
+      "code": "print('Hello'",
+      "error": "SyntaxError: unexpected EOF while parsing",
+      "explanation": "Python reached the end of the code unexpectedly. Likely missing a closing parenthesis, quote, or colon.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "prit('Hello')",
+      "error": "NameError: name 'prit' is not defined",
+      "explanation": "You used a variable or function that is not defined. Likely a typo.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "1/0",
+      "error": "ZeroDivisionError: division by zero",
+      "explanation": "Cannot divide a number by zero.",
+      "fixed_code": "1/1"
+    },
+    {
+      "code": "def f(): return f()\nf()",
+      "error": "RecursionError: maximum recursion depth exceeded",
+      "explanation": "Infinite recursion detected. Function calls itself indefinitely.",
+      "fixed_code": "def f(n):\n    if n <= 0: return 0\n    return f(n-1)\nf(5)"
+    },
+    {
+      "code": "for i in range(5)\n    print(i)",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the for loop.",
+      "fixed_code": "for i in range(5):\n    print(i)"
+    },
+    {
+      "code": "a = '1'\nb = a + 2",
+      "error": "TypeError: can only concatenate str (not \"int\") to str",
+      "explanation": "Cannot add string and integer directly.",
+      "fixed_code": "a = '1'\nb = int(a) + 2"
+    },
+    {
+      "code": "import math\nmath.sqrt(-1)",
+      "error": "ValueError: math domain error",
+      "explanation": "Square root of a negative number is invalid in real numbers.",
+      "fixed_code": "import math\nmath.sqrt(1)"
+    },
+    {
+      "code": "my_list = [1,2]\nprint(my_list[5])",
+      "error": "IndexError: list index out of range",
+      "explanation": "Accessing a list index that does not exist.",
+      "fixed_code": "my_list = [1,2]\nprint(my_list[1])"
+    },
+    {
+      "code": "my_dict = {}\nprint(my_dict['key'])",
+      "error": "KeyError: 'key'",
+      "explanation": "Accessing a dictionary key that does not exist.",
+      "fixed_code": "my_dict = {'key': 1}\nprint(my_dict['key'])"
+    },
+    {
+      "code": "x = 10\ny = undefined_var",
+      "error": "NameError: name 'undefined_var' is not defined",
+      "explanation": "Variable 'undefined_var' was used before assignment.",
+      "fixed_code": "x = 10\ny = 5"
+    },
+    {
+      "code": "if True\n    print('Hi')",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Missing colon at the end of the if statement.",
+      "fixed_code": "if True:\n    print('Hi')"
+    },
+    {
+      "code": "for i in range(3):\nprint(i)",
+      "error": "IndentationError: expected an indented block",
+      "explanation": "Code block after for loop must be indented.",
+      "fixed_code": "for i in range(3):\n    print(i)"
+    },
+    {
+      "code": "x = int('abc')",
+      "error": "ValueError: invalid literal for int() with base 10: 'abc'",
+      "explanation": "Cannot convert string 'abc' to integer.",
+      "fixed_code": "x = int('123')"
+    },
+    {
+      "code": "open('nonexistent_file.txt')",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'nonexistent_file.txt'",
+      "explanation": "File path is invalid or file does not exist.",
+      "fixed_code": "open('existing_file.txt')"
+    },
+    {
+      "code": "import non_existing_module",
+      "error": "ModuleNotFoundError: No module named 'non_existing_module'",
+      "explanation": "The module you are trying to import does not exist or is not installed.",
+      "fixed_code": "import math"
+    },
+    {
+      "code": "int('')",
+      "error": "ValueError: invalid literal for int() with base 10: ''",
+      "explanation": "Cannot convert empty string to integer.",
+      "fixed_code": "int('0')"
+    },
+    {
+      "code": "None + 1",
+      "error": "TypeError: unsupported operand type(s) for +: 'NoneType' and 'int'",
+      "explanation": "Cannot perform arithmetic on NoneType.",
+      "fixed_code": "0 + 1"
+    },
+    {
+      "code": "import math\nmath.factorial(-1)",
+      "error": "ValueError: factorial() not defined for negative values",
+      "explanation": "Factorial cannot be calculated for negative numbers.",
+      "fixed_code": "import math\nmath.factorial(5)"
+    },
+    {
+      "code": "my_tuple = (1,2)\nmy_tuple[2]",
+      "error": "IndexError: tuple index out of range",
+      "explanation": "Tuple index accessed does not exist.",
+      "fixed_code": "my_tuple = (1,2)\nmy_tuple[1]"
+    },
+    {
+      "code": "a = [1,2,3]\na.remove(5)",
+      "error": "ValueError: list.remove(x): x not in list",
+      "explanation": "You tried to remove an element that does not exist in the list.",
+      "fixed_code": "a = [1,2,3]\na.remove(2)"
+    },
+    {
+      "code": "d = {'a': 1}\nd['b']",
+      "error": "KeyError: 'b'",
+      "explanation": "Accessing a dictionary key that does not exist.",
+      "fixed_code": "d = {'a': 1}\nd['a']"
+    },
+    {
+      "code": "import math\nmath.log(-1)",
+      "error": "ValueError: math domain error",
+      "explanation": "Cannot calculate logarithm of negative numbers.",
+      "fixed_code": "import math\nmath.log(1)"
+    },
+    {
+      "code": "int(None)",
+      "error": "TypeError: int() argument must be a string, a bytes-like object or a number, not 'NoneType'",
+      "explanation": "Cannot convert None to int.",
+      "fixed_code": "int(0)"
+    },
+    {
+      "code": "sum('123')",
+      "error": "TypeError: unsupported operand type(s) for +: 'int' and 'str'",
+      "explanation": "Cannot sum a string directly; must convert to integers first.",
+      "fixed_code": "sum(map(int, '123'))"
+    },
+    {
+      "code": "'abc' - 'a'",
+      "error": "TypeError: unsupported operand type(s) for -: 'str' and 'str'",
+      "explanation": "Strings cannot be subtracted.",
+      "fixed_code": "'abc'.replace('a','')"
+    },
+    {
+      "code": "x = [1,2,3]\nx[3]",
+      "error": "IndexError: list index out of range",
+      "explanation": "Accessing an index that does not exist in the list.",
+      "fixed_code": "x[2]"
+    },
+    {
+      "code": "y = 'hello'\ny[5]",
+      "error": "IndexError: string index out of range",
+      "explanation": "String index out of range.",
+      "fixed_code": "y[4]"
+    },
+    {
+      "code": "import math\nmath.pow('2', 3)",
+      "error": "TypeError: must be real number, not str",
+      "explanation": "Cannot use a string as a number.",
+      "fixed_code": "math.pow(2,3)"
+    },
+    {
+      "code": "list(map(int, ['1', 'a']))",
+      "error": "ValueError: invalid literal for int() with base 10: 'a'",
+      "explanation": "Cannot convert non-numeric string to int.",
+      "fixed_code": "list(map(int, ['1','2']))"
+    },
+    {
+      "code": "x = None\nx.append(1)",
+      "error": "AttributeError: 'NoneType' object has no attribute 'append'",
+      "explanation": "Cannot call append on None.",
+      "fixed_code": "x = []\nx.append(1)"
+    },
+    {
+      "code": "import os\nos.chdir('nonexistent_dir')",
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'nonexistent_dir'",
+      "explanation": "Cannot change directory to a non-existent path.",
+      "fixed_code": "os.chdir('.')"
+    },
+    {
+      "code": "eval('x + 1')",
+      "error": "NameError: name 'x' is not defined",
+      "explanation": "Variable x is not defined before eval.",
+      "fixed_code": "x = 1\neval('x + 1')"
+    },
+    {
+      "code": "import json\njson.loads('{bad json}')",
+      "error": "JSONDecodeError: Expecting property name enclosed in double quotes",
+      "explanation": "Invalid JSON string.",
+      "fixed_code": "json.loads('{\"key\":1}')"
+    },
+    {
+      "code": "lambda x: x+",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Incomplete lambda expression.",
+      "fixed_code": "lambda x: x+1"
+    },
+    {
+      "code": "x = 5\nx /='2'",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Invalid augmented assignment.",
+      "fixed_code": "x /= 2"
+    },
+    {
+      "code": "x = [1,2]\nx[0] = 'a'",
+      "error": "No error",
+      "explanation": "Actually valid in Python, but may cause logical issues if expecting numbers.",
+      "fixed_code": "x[0] = 1"
+    },
+    {
+      "code": "a = {1,2}\na[0]",
+      "error": "TypeError: 'set' object is not subscriptable",
+      "explanation": "Cannot index a set.",
+      "fixed_code": "a = [1,2]\na[0]"
+    },
+    {
+      "code": "x = True\nx + 'a'",
+      "error": "TypeError: unsupported operand type(s) for +: 'bool' and 'str'",
+      "explanation": "Cannot add boolean and string.",
+      "fixed_code": "str(x) + 'a'"
+    },
+    {
+      "code": "x = 5\nx**='2'",
+      "error": "SyntaxError: invalid syntax",
+      "explanation": "Invalid augmented exponentiation assignment.",
+      "fixed_code": "x **= 2"
+    },
+    {
+      "code": "a = [1,2,3]\na.pop(5)",
+      "error": "IndexError: pop index out of range",
+      "explanation": "Cannot pop index that does not exist.",
+      "fixed_code": "a.pop(2)"
+    },
+    {
+      "code": "import math\nmath.log(0)",
+      "error": "ValueError: math domain error",
+      "explanation": "Cannot calculate logarithm of zero.",
+      "fixed_code": "math.log(1)"
+    },
+    {
+      "code": "int('3.14')",
+      "error": "ValueError: invalid literal for int() with base 10: '3.14'",
+      "explanation": "Cannot convert float string directly to int.",
+      "fixed_code": "int(float('3.14'))"
+    },
+    {
+      "code": "x = (1,2)\nx[0] = 5",
+      "error": "TypeError: 'tuple' object does not support item assignment",
+      "explanation": "Tuples are immutable.",
+      "fixed_code": "x = [1,2]\nx[0] = 5"
+    },
+    {
+      "code": "len(5)",
+      "error": "TypeError: object of type 'int' has no len()",
+      "explanation": "len() cannot be used on integers.",
+      "fixed_code": "len(str(5))"
+    },
+    {
+      "code": "'abc'.index('d')",
+      "error": "ValueError: substring not found",
+      "explanation": "Substring does not exist in string.",
+      "fixed_code": "'abc'.index('b')"
+    },
+    {
+      "code": "[].pop()",
+      "error": "IndexError: pop from empty list",
+      "explanation": "Cannot pop from an empty list.",
+      "fixed_code": "[1].pop()"
+    },
+    {
+      "code": "x = None\nx[0]",
+      "error": "TypeError: 'NoneType' object is not subscriptable",
+      "explanation": "Cannot index NoneType object.",
+      "fixed_code": "x = [1]\nx[0]"
+    },
+    {
+      "code": "# Python Example\nprint\"Hello, World!\")",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print\"Hello, World!\")\n         ^\nSyntaxError: invalid syntax",
+      "explanation": "Code: # Python Example\nprint\"Hello, World!\")\nError: Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print\"Hello, World!\")\n         ^\nSyntaxError: invalid syntax\nExplanation: In Python 3, `print` is a function and requires its arguments to be enclosed in parentheses. The original code treats `print` like a statement (as it was in Python 2), which",
+      "fixed_code": "# Python Example\nprint\"Hello, World!\")"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!\"",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print(\"Hello, World!\"\n                         ^\nSyntaxError: unexpected EOF while parsing",
+      "explanation": "The error \"SyntaxError: unexpected EOF while parsing\" means that the Python interpreter reached the end of the file (EOF) unexpectedly, while it was still expecting more code to complete a statement. In this case, the `print` function call is missing its closing parenthesis `)`. The interpreter saw the opening parenthesis and the string, but never found the matching closing parenthesis before the script ended.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
+    }
+  ],
+  "c": [
+    {
+      "code": "#include <stdio.h>\nint main(){printf(\"Hi\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon at the end of printf statement.",
+      "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hi\"); return 0;}"
+    },
+    {
+      "code": "int main(){int *p = NULL; *p = 5; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Invalid memory access. Dereferencing NULL pointer.",
+      "fixed_code": "int main(){int x = 5; return 0;}"
+    },
+    {
+      "code": "int main(){int x=5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero detected.",
+      "fixed_code": "int main(){int x=5/1; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 'a' + 1; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Character constants must be single character.",
+      "fixed_code": "int main(){char a = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 1; if(a==1) return 0;",
+      "error": "error: expected '}' before end of input",
+      "explanation": "Missing closing brace at the end of main function.",
+      "fixed_code": "int main(){int a = 1; if(a==1) return 0;}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main(){printf(\"Hi\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon before return statement.",
+      "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hi\"); return 0;}"
+    },
+    {
+      "code": "int main(){int *p = NULL; *p = 5; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Invalid memory access. Cannot dereference a NULL pointer.",
+      "fixed_code": "int main(){int x = 5; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int x=5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero is invalid.",
+      "fixed_code": "int main(){int x=5/1; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 'a' + 1; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Single quotes should contain a single character.",
+      "fixed_code": "int main(){char a = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 1; if(a==1) return 0;",
+      "error": "error: expected '}' before end of input",
+      "explanation": "Missing closing brace for if or main function.",
+      "fixed_code": "int main(){int a = 1; if(a==1) return 0; }"
+    },
+    {
+      "code": "int main(){printf(\"Hello World\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after printf statement.",
+      "fixed_code": "int main(){printf(\"Hello World\"); return 0;}"
+    },
+    {
+      "code": "int main(){char *ptr = NULL; *ptr = 'a'; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Dereferencing NULL pointer is invalid.",
+      "fixed_code": "int main(){char c; char *ptr = &c; *ptr = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int x; x = 5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero detected.",
+      "fixed_code": "int main(){int x; x = 5/1; return 0;}"
+    },
+    {
+      "code": "int main(){int arr[2]; arr[5] = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Accessing array out of bounds causes segmentation fault.",
+      "fixed_code": "int main(){int arr[2]; arr[1] = 10; return 0;}"
+    },
+    {
+      "code": "int main(){float x = 1.0 / 0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero in float causes runtime error in some systems.",
+      "fixed_code": "int main(){float x = 1.0 / 1; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 10\nreturn 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after variable declaration.",
+      "fixed_code": "int main(){int x = 10; return 0;}"
+    },
+    {
+      "code": "int main(){if(1) printf(\"Yes\") else printf(\"No\"); return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing semicolon after printf statement or improper if-else formatting.",
+      "fixed_code": "int main(){if(1) { printf(\"Yes\"); } else { printf(\"No\"); } return 0;}"
+    },
+    {
+      "code": "int main(){int x = 'ab'; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Single quotes can only hold one character.",
+      "fixed_code": "int main(){char x = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int a; if(a == 5) return 0",
+      "error": "error: expected '}' before end of input",
+      "explanation": "Missing closing brace for if or main function.",
+      "fixed_code": "int main(){int a; if(a == 5) return 0;}"
+    },
+    {
+      "code": "int main(){int *p; *p = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Pointer not initialized before dereferencing.",
+      "fixed_code": "int main(){int x; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){printf(\"Value: %d\", 10)",
+      "error": "error: expected ';' before '}' token",
+      "explanation": "Missing semicolon after printf statement.",
+      "fixed_code": "int main(){printf(\"Value: %d\", 10); return 0;}"
+    },
+    {
+      "code": "int main(){char *s = \"Hello\"; s[0] = 'h'; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "String literals are immutable in C.",
+      "fixed_code": "int main(){char s[] = \"Hello\"; s[0] = 'h'; return 0;}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main(){printf(\"Hi\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon before return statement.",
+      "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hi\"); return 0;}"
+    },
+    {
+      "code": "int main(){int *p = NULL; *p = 5; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Invalid memory access. Cannot dereference a NULL pointer.",
+      "fixed_code": "int main(){int x = 5; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int x=5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero is invalid.",
+      "fixed_code": "int main(){int x=5/1; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 'a' + 1; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Single quotes should contain a single character.",
+      "fixed_code": "int main(){char a = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 1; if(a==1) return 0;",
+      "error": "error: expected '}' before end of input",
+      "explanation": "Missing closing brace for if or main function.",
+      "fixed_code": "int main(){int a = 1; if(a==1) return 0; }"
+    },
+    {
+      "code": "int main(){printf(\"Hello World\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after printf statement.",
+      "fixed_code": "int main(){printf(\"Hello World\"); return 0;}"
+    },
+    {
+      "code": "int main(){char *ptr = NULL; *ptr = 'a'; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Dereferencing NULL pointer is invalid.",
+      "fixed_code": "int main(){char c; char *ptr = &c; *ptr = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int x; x = 5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero detected.",
+      "fixed_code": "int main(){int x; x = 5/1; return 0;}"
+    },
+    {
+      "code": "int main(){int arr[2]; arr[5] = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Accessing array out of bounds causes segmentation fault.",
+      "fixed_code": "int main(){int arr[2]; arr[1] = 10; return 0;}"
+    },
+    {
+      "code": "int main(){float x = 1.0 / 0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero in float causes runtime error in some systems.",
+      "fixed_code": "int main(){float x = 1.0 / 1; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 10\nreturn 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after variable declaration.",
+      "fixed_code": "int main(){int x = 10; return 0;}"
+    },
+    {
+      "code": "int main(){if(1) printf(\"Yes\") else printf(\"No\"); return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing semicolon after printf statement or improper if-else formatting.",
+      "fixed_code": "int main(){if(1) { printf(\"Yes\"); } else { printf(\"No\"); } return 0;}"
+    },
+    {
+      "code": "int main(){int x = 'ab'; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Single quotes can only hold one character.",
+      "fixed_code": "int main(){char x = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int a; if(a == 5) return 0",
+      "error": "error: expected '}' before end of input",
+      "explanation": "Missing closing brace for if or main function.",
+      "fixed_code": "int main(){int a; if(a == 5) return 0;}"
+    },
+    {
+      "code": "int main(){int *p; *p = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Pointer not initialized before dereferencing.",
+      "fixed_code": "int main(){int x; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){printf(\"Value: %d\", 10)",
+      "error": "error: expected ';' before '}' token",
+      "explanation": "Missing semicolon after printf statement.",
+      "fixed_code": "int main(){printf(\"Value: %d\", 10); return 0;}"
+    },
+    {
+      "code": "int main(){char *s = \"Hello\"; s[0] = 'h'; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "String literals are immutable in C.",
+      "fixed_code": "int main(){char s[] = \"Hello\"; s[0] = 'h'; return 0;}"
+    },
+    {
+      "code": "int main(){int i; for(i=0;i<5;i++) printf(\"%d\", i) return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after printf statement inside loop.",
+      "fixed_code": "int main(){int i; for(i=0;i<5;i++) printf(\"%d\", i); return 0;}"
+    },
+    {
+      "code": "int main(){int x = 0; if(x==1) printf(\"Yes\") else printf(\"No\"); return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing braces around if statement causing syntax error.",
+      "fixed_code": "int main(){int x = 0; if(x==1){printf(\"Yes\");} else {printf(\"No\");} return 0;}"
+    },
+    {
+      "code": "int main(){int arr[3]; arr[3] = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Array index out of bounds.",
+      "fixed_code": "int main(){int arr[3]; arr[2] = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int x; if(x>0) printf(\"Positive\"); else printf(\"Non-positive\") return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon before return.",
+      "fixed_code": "int main(){int x; if(x>0) printf(\"Positive\"); else printf(\"Non-positive\"); return 0;}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\";return 0;}",
+      "error": "user_code.c: In function 'main':\nuser_code.c:2:36: error: expected ')' before ';' token\n    2 | int main(){printf(\"Hello, World!\\n\";return 0;}\n      |                  ~                 ^\n      |                                    )\nuser_code.c:2:46: error: expected ';' before '}' token\n    2 | int main(){printf(\"Hello, World!\\n\";return 0;}\n      |                                              ^\n      |                                              ;",
+      "explanation": "\u26a0\ufe0f No clear suggestion available.",
+      "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\";return 0;}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\");return 0;",
+      "error": "user_code.c: In function 'main':\nuser_code.c:2:1: error: expected declaration or statement at end of input\n    2 | int main(){printf(\"Hello, World!\\n\");return 0;\n      | ^~~",
+      "explanation": "\u26a0\ufe0f No clear suggestion available.",
+      "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\");return 0;"
+    }
+  ],
+  "cpp": [
+    {
+      "code": "#include <iostream>\nint main(){std::cout << 'Hi' return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after std::cout statement.",
+      "fixed_code": "#include <iostream>\nint main(){std::cout << 'Hi'; return 0;}"
+    },
+    {
+      "code": "int main(){int *p = nullptr; *p = 5; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Dereferencing null pointer.",
+      "fixed_code": "int main(){int x = 5; return 0;}"
+    },
+    {
+      "code": "int main(){int x=5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero detected.",
+      "fixed_code": "int main(){int x=5/1; return 0;}"
+    },
+    {
+      "code": "int main(){std::string s; std::cout << s[5]; return 0;}",
+      "error": "std::out_of_range",
+      "explanation": "Accessing string index out of range.",
+      "fixed_code": "int main(){std::string s = \"abc\"; std::cout << s[2]; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 'a' + 1; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Character constants must be single character.",
+      "fixed_code": "int main(){char a = 'a'; return 0;}"
+    },
+    {
+      "code": "#include <iostream>\nint main(){std::cout << 'Hi' return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon before return statement.",
+      "fixed_code": "#include <iostream>\nint main(){std::cout << 'Hi'; return 0;}"
+    },
+    {
+      "code": "int main(){int *p = nullptr; *p = 5; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Dereferencing a null pointer is invalid.",
+      "fixed_code": "int main(){int x = 5; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 5/0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero is invalid.",
+      "fixed_code": "int main(){int x = 5/1; return 0;}"
+    },
+    {
+      "code": "int main(){std::string s; std::cout << s[5]; return 0;}",
+      "error": "std::out_of_range",
+      "explanation": "Accessing container out of bounds.",
+      "fixed_code": "int main(){std::string s = \"Hello\"; std::cout << s[2]; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 'ab'; return 0;}",
+      "error": "warning: character constant too long for its type",
+      "explanation": "Single quotes can hold only one character.",
+      "fixed_code": "int main(){char a = 'a'; return 0;}"
+    },
+    {
+      "code": "int main(){int x; if(x>0) std::cout << 'Positive' else std::cout << 'Non-positive'; return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing semicolon or braces around if statement.",
+      "fixed_code": "int main(){int x; if(x>0){ std::cout << \"Positive\"; } else { std::cout << \"Non-positive\"; } return 0;}"
+    },
+    {
+      "code": "int main(){int arr[2]; arr[5] = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Array index out of bounds.",
+      "fixed_code": "int main(){int arr[2]; arr[1] = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int i; for(i=0;i<5;i++) std::cout << i return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after std::cout statement.",
+      "fixed_code": "int main(){int i; for(i=0;i<5;i++) std::cout << i; return 0;}"
+    },
+    {
+      "code": "int main(){float x = 1.0 / 0; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero.",
+      "fixed_code": "int main(){float x = 1.0 / 1; return 0;}"
+    },
+    {
+      "code": "int main(){std::string s = \"Hello\"; s[0] = 'h'; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Modifying immutable string literals (if declared const) or bounds issue.",
+      "fixed_code": "int main(){std::string s = \"Hello\"; s[0] = 'h'; return 0;}"
+    },
+    {
+      "code": "int main(){int x; std::cout << x return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after std::cout statement.",
+      "fixed_code": "int main(){int x; std::cout << x; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 10; if(x==10) std::cout << \"Yes\" else std::cout << \"No\"; return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing braces around if statement causing syntax error.",
+      "fixed_code": "int main(){int x = 10; if(x==10){std::cout << \"Yes\";} else {std::cout << \"No\";} return 0;}"
+    },
+    {
+      "code": "int main(){int *p; *p = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Pointer not initialized before dereferencing.",
+      "fixed_code": "int main(){int x; int *p = &x; *p = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int arr[3]; arr[3] = 10; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Array index out of bounds.",
+      "fixed_code": "int main(){int arr[3]; arr[2] = 10; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 0; while(x<5) std::cout << x return 0;}",
+      "error": "error: expected ';' before 'return'",
+      "explanation": "Missing semicolon after std::cout inside while loop.",
+      "fixed_code": "int main(){int x = 0; while(x<5) std::cout << x; return 0;}"
+    },
+    {
+      "code": "int main(){int a = 10; if(a>0) std::cout << \"Positive\" else std::cout << \"Non-positive\" return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing braces causing syntax error.",
+      "fixed_code": "int main(){int a = 10; if(a>0){ std::cout << \"Positive\";} else { std::cout << \"Non-positive\";} return 0;}"
+    },
+    {
+      "code": "int main(){int x; std::cout << x; return 0;}",
+      "error": "warning: 'x' is used uninitialized",
+      "explanation": "Variable 'x' is declared but not initialized before use.",
+      "fixed_code": "int main(){int x = 0; std::cout << x; return 0;}"
+    },
+    {
+      "code": "int main(){int arr[3]; for(int i=0;i<=3;i++) arr[i]=i; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Array index out of bounds (loop goes from 0 to 3 for an array of size 3).",
+      "fixed_code": "int main(){int arr[3]; for(int i=0;i<3;i++) arr[i]=i; return 0;}"
+    },
+    {
+      "code": "int add(int a, int b){ return a + b } int main(){ return add(5,3); }",
+      "error": "error: expected ';' before '}'",
+      "explanation": "Missing semicolon at the end of return statement in function.",
+      "fixed_code": "int add(int a, int b){ return a + b; } int main(){ return add(5,3); }"
+    },
+    {
+      "code": "int main(){int *ptr; std::cout << *ptr; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Dereferencing uninitialized pointer.",
+      "fixed_code": "int main(){int x = 10; int *ptr = &x; std::cout << *ptr; return 0;}"
+    },
+    {
+      "code": "int main(){int x=10; int y=0; int z=x/y; return 0;}",
+      "error": "Floating point exception",
+      "explanation": "Division by zero is invalid.",
+      "fixed_code": "int main(){int x=10; int y=1; int z=x/y; return 0;}"
+    },
+    {
+      "code": "int main(){std::vector<int> v(3); std::cout << v.at(5); return 0;}",
+      "error": "std::out_of_range",
+      "explanation": "Accessing vector element outside its valid index range.",
+      "fixed_code": "int main(){std::vector<int> v(3); std::cout << v.at(2); return 0;}"
+    },
+    {
+      "code": "int main(){for(int i=0; i<5; i++) std::cout << i std::cout << '\\n'; return 0;}",
+      "error": "error: expected ';' before 'std::cout'",
+      "explanation": "Missing semicolon after first std::cout statement.",
+      "fixed_code": "int main(){for(int i=0; i<5; i++) std::cout << i; std::cout << '\\n'; return 0;}"
+    },
+    {
+      "code": "int main(){std::string s = \"Hello\"; s[5] = '!'; return 0;}",
+      "error": "std::out_of_range",
+      "explanation": "String index out of range (valid indices are 0-4).",
+      "fixed_code": "int main(){std::string s = \"Hello\"; s[4] = '!'; return 0;}"
+    },
+    {
+      "code": "int main(){int x = 5; if(x>0) std::cout << \"Yes\" else std::cout << \"No\"; return 0;}",
+      "error": "error: expected ';' before 'else'",
+      "explanation": "Missing braces around if block.",
+      "fixed_code": "int main(){int x = 5; if(x>0){ std::cout << \"Yes\";} else { std::cout << \"No\";} return 0;}"
+    },
+    {
+      "code": "int main(){int arr[2] = {1,2}; arr[2] = 3; return 0;}",
+      "error": "Segmentation fault",
+      "explanation": "Array index out of bounds.",
+      "fixed_code": "int main(){int arr[2] = {1,2}; arr[1] = 3; return 0;}"
+    },
+    {
+      "code": "int main(){int &ref; ref = 5; return 0;}",
+      "error": "error: 'ref' declared as reference but not initialized",
+      "explanation": "References must be initialized when declared.",
+      "fixed_code": "int main(){int x; int &ref = x; ref = 5; return 0;}"
+    },
+    {
+      "code": "int main(){const int x; x=5; return 0;}",
+      "error": "error: assignment of read-only variable 'x'",
+      "explanation": "Cannot assign a value to a const variable after declaration.",
+      "fixed_code": "int main(){const int x = 5; return 0;}"
+    }
+  ],
+  "java": [
+    {
+      "code": "public class Main{public static void main(String[] args){System.out.println(x);}}",
+      "error": "cannot find symbol",
+      "explanation": "Using a variable or method not defined.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x = 5; System.out.println(x);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 1/0;}}",
+      "error": "ArithmeticException: / by zero",
+      "explanation": "Division by zero detected.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 1/1;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){System.out.println('Hi')}}",
+      "error": "error: ';' expected",
+      "explanation": "Missing semicolon at the end of statement.",
+      "fixed_code": "public class Main{public static void main(String[] args){System.out.println(\"Hi\");}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = new int[2]; System.out.println(arr[5]);}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Array index out of bounds.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[2]; System.out.println(arr[1]);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = null; System.out.println(s.length());}}",
+      "error": "NullPointerException",
+      "explanation": "Accessing a null object reference.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = \"Hello\"; System.out.println(s.length());}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){System.out.println(x);}}",
+      "error": "cannot find symbol",
+      "explanation": "Variable 'x' is not declared or defined before use.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x = 10; System.out.println(x);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 1/0;}}",
+      "error": "ArithmeticException: / by zero",
+      "explanation": "Division by zero is not allowed in Java.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 1/1;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){System.out.println('Hi')}}",
+      "error": "error: ';' expected",
+      "explanation": "Missing semicolon or wrong quotes (should be double quotes for strings).",
+      "fixed_code": "public class Main{public static void main(String[] args){System.out.println(\"Hi\");}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = new int[2]; System.out.println(arr[5]);}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Accessing an array index outside of its bounds.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[2]; System.out.println(arr[1]);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = null; System.out.println(s.length());}}",
+      "error": "NullPointerException",
+      "explanation": "Attempting to access a method or property of a null object.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = \"Hello\"; System.out.println(s.length());}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 5; if(a>3) System.out.println(\"Yes\") else System.out.println(\"No\");}}",
+      "error": "error: 'else' without 'if'",
+      "explanation": "Missing braces for the if statement; else must follow a block or statement.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 5; if(a>3){System.out.println(\"Yes\");} else {System.out.println(\"No\");}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int x = \"10\";}}",
+      "error": "incompatible types: String cannot be converted to int",
+      "explanation": "Cannot assign a String to an int variable.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x = 10;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = new int[-1];}}",
+      "error": "NegativeArraySizeException",
+      "explanation": "Array size cannot be negative.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[1];}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a; System.out.println(a);}}",
+      "error": "variable a might not have been initialized",
+      "explanation": "Local variables must be initialized before use.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 0; System.out.println(a);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){Object obj = new String(\"test\"); Integer n = (Integer)obj;}}",
+      "error": "ClassCastException",
+      "explanation": "Cannot cast a String object to Integer.",
+      "fixed_code": "public class Main{public static void main(String[] args){Object obj = new String(\"test\"); String s = (String)obj;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = {1,2,3}; for(int i=0;i<=arr.length;i++){System.out.println(arr[i]);}}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Loop goes one past the array's last index.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = {1,2,3}; for(int i=0;i<arr.length;i++){System.out.println(arr[i]);}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 5/0; System.out.println(a);}}",
+      "error": "ArithmeticException: / by zero",
+      "explanation": "Division by zero is not allowed.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 5/1; System.out.println(a);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int x = 10; if(x = 5){System.out.println(\"Yes\");}}}",
+      "error": "incompatible types: boolean required",
+      "explanation": "Using '=' instead of '==' in an if condition. '=' is assignment, '==' is comparison.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x = 10; if(x == 5){System.out.println(\"Yes\");}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = null; if(s.equals(\"test\")){System.out.println(\"Match\");}}}",
+      "error": "NullPointerException",
+      "explanation": "Calling .equals() on a null object causes NullPointerException.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = null; if(\"test\".equals(s)){System.out.println(\"Match\");}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){for(int i=0;i<5;i++ print(i);}}",
+      "error": "error: ';' expected",
+      "explanation": "Syntax error: missing parentheses or semicolon in for-loop.",
+      "fixed_code": "public class Main{public static void main(String[] args){for(int i=0;i<5;i++){System.out.println(i);}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = {1,2,3}; System.out.println(arr[-1]);}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Array indices cannot be negative.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = {1,2,3}; System.out.println(arr[0]);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 5; int b = 0; System.out.println(a/b);}}",
+      "error": "ArithmeticException: / by zero",
+      "explanation": "Division by zero is illegal.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 5; int b = 1; System.out.println(a/b);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){try{int a=5/0;}catch(NullPointerException e){System.out.println(\"Error\");}}}",
+      "error": "ArithmeticException not caught",
+      "explanation": "Catching the wrong exception type. ArithmeticException must be caught.",
+      "fixed_code": "public class Main{public static void main(String[] args){try{int a=5/0;}catch(ArithmeticException e){System.out.println(\"Error\");}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int sum = 0; for(int i=1;i<=5;i++); sum += i; System.out.println(sum);}}",
+      "error": "cannot find symbol: i",
+      "explanation": "Variable 'i' declared inside for-loop is out of scope after semicolon.",
+      "fixed_code": "public class Main{public static void main(String[] args){int sum = 0; for(int i=1;i<=5;i++){ sum += i; } System.out.println(sum);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = \"test\"; s.charAt(5);}}",
+      "error": "StringIndexOutOfBoundsException",
+      "explanation": "Attempting to access a character beyond the string length.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = \"test\"; s.charAt(3);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int x = Math.sqrt(-1);}}",
+      "error": "incompatible types: possible lossy conversion",
+      "explanation": "Math.sqrt returns double, cannot assign to int directly.",
+      "fixed_code": "public class Main{public static void main(String[] args){double x = Math.sqrt(-1);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = new int[5]; for(int i=0;i<=arr.length;i++){arr[i]=i;}}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Loop iterates one past the last valid index.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[5]; for(int i=0;i<arr.length;i++){arr[i]=i;}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int a = 5; String s = a;}}",
+      "error": "incompatible types: int cannot be converted to String",
+      "explanation": "Cannot assign an int to a String variable directly; explicit conversion is required.",
+      "fixed_code": "public class Main{public static void main(String[] args){int a = 5; String s = String.valueOf(a);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){List<Integer> list = new ArrayList<>(); list.add(\"5\");}}",
+      "error": "incompatible types: String cannot be converted to Integer",
+      "explanation": "Cannot add a String to a List of Integers.",
+      "fixed_code": "public class Main{public static void main(String[] args){List<Integer> list = new ArrayList<>(); list.add(5);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = new int[3]; arr[3] = 10;}}",
+      "error": "ArrayIndexOutOfBoundsException",
+      "explanation": "Index 3 is out of bounds; valid indices are 0, 1, 2.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[3]; arr[2] = 10;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){Object o = new Integer(5); String s = (String)o;}}",
+      "error": "ClassCastException",
+      "explanation": "Cannot cast Integer to String.",
+      "fixed_code": "public class Main{public static void main(String[] args){Object o = new Integer(5); Integer i = (Integer)o;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int x; if(true){int x = 5;}}}",
+      "error": "variable x is already defined in method main(String[] args)",
+      "explanation": "Cannot declare a variable with the same name in the same scope.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x; if(true){x = 5;}}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = null; s.length();}}",
+      "error": "NullPointerException",
+      "explanation": "Calling a method on a null reference causes NullPointerException.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = null; if(s != null) { s.length(); }}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int x = 10; double y = x / 3;}}",
+      "error": "loss of precision",
+      "explanation": "Integer division occurs first; assign to double requires proper casting.",
+      "fixed_code": "public class Main{public static void main(String[] args){int x = 10; double y = x / 3.0;}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){String s = \"hello\"; char c = s.charAt(10);}}",
+      "error": "StringIndexOutOfBoundsException",
+      "explanation": "String index 10 is out of bounds for length 5.",
+      "fixed_code": "public class Main{public static void main(String[] args){String s = \"hello\"; char c = s.charAt(4);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){int[] arr = null; System.out.println(arr.length);}}",
+      "error": "NullPointerException",
+      "explanation": "Cannot access length of null array.",
+      "fixed_code": "public class Main{public static void main(String[] args){int[] arr = new int[5]; System.out.println(arr.length);}}"
+    },
+    {
+      "code": "public class Main{public static void main(String[] args){List<Integer> list = null; list.add(5);}}",
+      "error": "NullPointerException",
+      "explanation": "Cannot call methods on a null List reference.",
+      "fixed_code": "public class Main{public static void main(String[] args){List<Integer> list = new ArrayList<>(); list.add(5);}}"
+    },
+    {
+      "code": "public class Main { public static void main(String[ args){ System.out.println(\"Hello, World!\"); } }",
+      "error": "Main.java:1: error: ']' expected\npublic class Main { public static void main(String[ args){ System.out.println(\"Hello, World!\"); } }\n                                                   ^\n1 error",
+      "explanation": "The error message `error: ']' expected` is quite specific and points directly to the problem.\n\n### Explanation of the Error\n\nIn Java, when you declare an array type, you need to use a pair of square brackets `[]` to indicate it's an array. In the `main` method signature, `String[ args` is supposed to declare `args` as an array of `String` objects. However, it's missing the closing square bracket. It should be `String[] args` to correctly specify that `args` is an array of `String`",
+      "fixed_code": "public class Main { public static void main(String[ args){ System.out.println(\"Hello, World!\"); } }"
+    }
+  ]
+}
