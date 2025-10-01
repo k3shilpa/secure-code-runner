@@ -13,6 +13,24 @@
       "fixed_code": "print('Hello')"
     },
     {
+      "code": "print('Hello'",
+      "error": "SyntaxError: unexpected EOF while parsing",
+      "explanation": "Python reached the end of the code unexpectedly. This usually means you're missing a closing parenthesis, quote, or colon.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "prit('Hello')",
+      "error": "NameError: name 'prit' is not defined",
+      "explanation": "You misspelled the function name. It should be `print`, not `prit`.",
+      "fixed_code": "print('Hello')"
+    },
+    {
+      "code": "for i in range(5)\n    print(i)",
+      "error": "SyntaxError: expected ':'",
+      "explanation": "A colon `:` is required at the end of a `for` or `if` statement.",
+      "fixed_code": "for i in range(5):\n    print(i)"
+    },
+    {
       "code": "1/0",
       "error": "ZeroDivisionError: division by zero",
       "explanation": "Cannot divide a number by zero.",
@@ -473,6 +491,60 @@
       "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print(\"Hello, World!\"\n                         ^\nSyntaxError: unexpected EOF while parsing",
       "explanation": "The error \"SyntaxError: unexpected EOF while parsing\" means that the Python interpreter reached the end of the file (EOF) unexpectedly, while it was still expecting more code to complete a statement. In this case, the `print` function call is missing its closing parenthesis `)`. The interpreter saw the opening parenthesis and the string, but never found the matching closing parenthesis before the script ended.",
       "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!\")",
+      "error": "Execution timed out",
+      "explanation": "\u26a0\ufe0f No clear suggestion available.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!)",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print(\"Hello, World!)\n                         ^\nSyntaxError: EOL while scanning string literal",
+      "explanation": "SyntaxError detected: check parentheses, quotes, colons, and indentation.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!)"
+    },
+    {
+      "code": "def reverse_string(s):\n    return s[::-1\n\n# Input from user\nstring = input(\"Enter a string: \")\nprint(\"Reversed string:\", reverse_string(string))\n",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 5\n    string = input(\"Enter a string: \")\n    ^\nSyntaxError: invalid syntax",
+      "explanation": "SyntaxError detected: check parentheses, quotes, colons, and indentation.",
+      "fixed_code": "def reverse_string(s):\n    return s[::-1\n\n# Input from user\nstring = input(\"Enter a string: \")\nprint(\"Reversed string:\", reverse_string(string))\n"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!)",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print(\"Hello, World!\"\n                         ^\nSyntaxError: unexpected EOF while parsing",
+      "explanation": "SyntaxError detected: check parentheses, quotes, colons, and indentation.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!)"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World)",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2\n    print(\"Hello, World)\n                        ^\nSyntaxError: EOL while scanning string literal",
+      "explanation": "SyntaxError detected: check parentheses, quotes, colons, and indentation.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World)"
+    },
+    {
+      "code": "# Python Example\nprnt(\"Hello, World!\")",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/runner.py\", line 4, in <module>\n    import user_code\n  File \"/workspace/user_code.py\", line 2, in <module>\n    prnt(\"Hello, World!\")\nNameError: name 'prnt' is not defined",
+      "explanation": "NameError: variable or function not defined.",
+      "fixed_code": "# Python Example\nprnt(\"Hello, World!\")"
+    },
+    {
+      "code": "# Python Example\nprit(\"Hello, World!\")",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/user_code.py\", line 2, in <module>\n    prit(\"Hello, World!\")\nNameError: name 'prit' is not defined",
+      "explanation": "The error `NameError: name 'prit' is not defined` occurs because `prit` is a misspelling of the built-in Python function `print`. Python does not recognize `prit` as a valid function, hence it reports that the name is not defined. The fix involves correcting the typo to `print`.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
+    },
+    {
+      "code": "# Python Example\nprnt(\"Hello, World!\")",
+      "error": "Traceback (most recent call last):\n  File \"/workspace/user_code.py\", line 2, in <module>\n    prnt(\"Hello, World!\")\nNameError: name 'prnt' is not defined",
+      "explanation": "The error `NameError: name 'prnt' is not defined` occurs because Python's built-in function for printing output is `print` (all lowercase), not `prnt`. You made a typo by omitting the 'i' in 'print'. The interpreter couldn't find a function or variable named `prnt` in its scope.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
+    },
+    {
+      "code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
+      "error": "File \"/workspace/user_code.py\", line 3\n    int main() {\n        ^\nSyntaxError: invalid syntax",
+      "explanation": "The provided code is written in C, not Python. The Python interpreter encountered a `SyntaxError` because it tried to parse C-specific syntax like `#include <stdio.h>`, `int main() {`, and `return 0;` as Python code. Python has a different syntax for defining functions and printing output.",
+      "fixed_code": "print(\"Hello, World!\")"
     }
   ],
   "c": [
@@ -481,6 +553,18 @@
       "error": "error: expected ';' before 'return'",
       "explanation": "Missing semicolon at the end of printf statement.",
       "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hi\"); return 0;}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\")\n    return 0;\n}",
+      "error": "error: expected \u00e2\u20ac\u02dc;\u00e2\u20ac\u2122 before \u00e2\u20ac\u02dcreturn\u00e2\u20ac\u2122",
+      "explanation": "In C, each statement must end with a semicolon `;`. You missed it after `printf`.",
+      "fixed_code": "#include <stdio.h>\nint main() {\n    printf(\"Hello, World!\");\n    return 0;\n}"
+    },
+    {
+      "code": "#include <stdio.h>\nint main() {\n    pritnf(\"Hi\");\n    return 0;\n}",
+      "error": "implicit declaration of function \u00e2\u20ac\u02dcpritnf\u00e2\u20ac\u2122",
+      "explanation": "You misspelled `printf`. The compiler does not recognize `pritnf`.",
+      "fixed_code": "#include <stdio.h>\nint main() {\n    printf(\"Hi\");\n    return 0;\n}"
     },
     {
       "code": "int main(){int *p = NULL; *p = 5; return 0;}",
@@ -745,6 +829,12 @@
       "error": "user_code.c: In function 'main':\nuser_code.c:2:1: error: expected declaration or statement at end of input\n    2 | int main(){printf(\"Hello, World!\\n\");return 0;\n      | ^~~",
       "explanation": "\u26a0\ufe0f No clear suggestion available.",
       "fixed_code": "#include <stdio.h>\nint main(){printf(\"Hello, World!\\n\");return 0;"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!\")",
+      "error": "user_code.c:1:3: error: invalid preprocessing directive #Python\n    1 | # Python Example\n      |   ^~~~~~\nuser_code.c:2:7: error: expected declaration specifiers or '...' before string constant\n    2 | print(\"Hello, World!\")\n      |       ^~~~~~~~~~~~~~~",
+      "explanation": "The provided code is written in Python, but it's being compiled as C code. C compilers cannot understand Python syntax. The `# Python Example` line is interpreted as an invalid preprocessor directive in C, and `print(\"Hello, World!\")` is not a valid C function call. To fix this, the code needs to be rewritten using C syntax for printing output.",
+      "fixed_code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
     }
   ],
   "cpp": [
@@ -753,6 +843,18 @@
       "error": "error: expected ';' before 'return'",
       "explanation": "Missing semicolon after std::cout statement.",
       "fixed_code": "#include <iostream>\nint main(){std::cout << 'Hi'; return 0;}"
+    },
+    {
+      "code": "#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hello, World!\"\n    return 0;\n}",
+      "error": "error: expected \u00e2\u20ac\u02dc;\u00e2\u20ac\u2122 before \u00e2\u20ac\u02dcreturn\u00e2\u20ac\u2122",
+      "explanation": "In C++, each statement must end with a semicolon `;`. You missed it after the `cout` line.",
+      "fixed_code": "#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hello, World!\";\n    return 0;\n}"
+    },
+    {
+      "code": "#include <iostream>\nusing namespace std;\nint main() {\n    cot << \"Hi\";\n    return 0;\n}",
+      "error": "error: \u00e2\u20ac\u02dccot\u00e2\u20ac\u2122 was not declared in this scope",
+      "explanation": "You misspelled `cout`. The correct identifier is `cout`.",
+      "fixed_code": "#include <iostream>\nusing namespace std;\nint main() {\n    cout << \"Hi\";\n    return 0;\n}"
     },
     {
       "code": "int main(){int *p = nullptr; *p = 5; return 0;}",
@@ -945,6 +1047,12 @@
       "error": "error: assignment of read-only variable 'x'",
       "explanation": "Cannot assign a value to a const variable after declaration.",
       "fixed_code": "int main(){const int x = 5; return 0;}"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!\")",
+      "error": "user_code.cpp:1:3: error: invalid preprocessing directive #Python\n    1 | # Python Example\n      |   ^~~~~~\nuser_code.cpp:2:6: error: expected constructor, destructor, or type conversion before '(' token\n    2 | print(\"Hello, World!\")\n      |      ^",
+      "explanation": "The provided code is written in Python, not C++. C++ uses `std::cout` for output and `//` or `/* ... */` for comments, not `print()` or `#` for single-line comments. The C++ compiler interprets Python syntax as invalid preprocessor directives and function calls, leading to the reported errors.",
+      "fixed_code": "# Python Example\nprint(\"Hello, World!\")"
     }
   ],
   "java": [
@@ -953,6 +1061,18 @@
       "error": "cannot find symbol",
       "explanation": "Using a variable or method not defined.",
       "fixed_code": "public class Main{public static void main(String[] args){int x = 5; System.out.println(x);}}"
+    },
+    {
+      "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello World!)\n  }\n}",
+      "error": "error: unclosed string literal",
+      "explanation": "In Java, strings must be enclosed with matching quotes. You missed the closing quote before the parenthesis.",
+      "fixed_code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hello World!\");\n  }\n}"
+    },
+    {
+      "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.printn(\"Hi\");\n  }\n}",
+      "error": "error: cannot find symbol\n  symbol:   method printn(String)\n  location: variable out of type PrintStream",
+      "explanation": "You misspelled `println`. Java\u00e2\u20ac\u2122s standard output method is `System.out.println`.",
+      "fixed_code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Hi\");\n  }\n}"
     },
     {
       "code": "public class Main{public static void main(String[] args){int a = 1/0;}}",
@@ -1175,6 +1295,30 @@
       "error": "Main.java:1: error: ']' expected\npublic class Main { public static void main(String[ args){ System.out.println(\"Hello, World!\"); } }\n                                                   ^\n1 error",
       "explanation": "The error message `error: ']' expected` is quite specific and points directly to the problem.\n\n### Explanation of the Error\n\nIn Java, when you declare an array type, you need to use a pair of square brackets `[]` to indicate it's an array. In the `main` method signature, `String[ args` is supposed to declare `args` as an array of `String` objects. However, it's missing the closing square bracket. It should be `String[] args` to correctly specify that `args` is an array of `String`",
       "fixed_code": "public class Main { public static void main(String[ args){ System.out.println(\"Hello, World!\"); } }"
+    },
+    {
+      "code": "# Python Example\nprint(\"Hello, World!\")",
+      "error": "Main.java:1: error: illegal character: '#'\n# Python Example\n^\nMain.java:1: error: class, interface, enum, or record expected\n# Python Example\n         ^\n2 errors",
+      "explanation": "The provided code is written in Python syntax, not Java. Java uses `//` or `/* ... */` for comments, not `#`. Additionally, Java requires all executable code to be within a class and a `main` method, and uses `System.out.println()` for printing to the console, not `print()`. The errors indicate that the Java compiler is encountering Python syntax, leading to 'illegal character' and 'class, interface, enum, or record expected' errors because it cannot parse the Python code as valid Java.",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!\");\n    }\n}"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!\";\n    }\n}",
+      "error": "Main.java:4: error: ')' expected\n        System.out.println(\"Hello, World!\";\n                                          ^\n1 error",
+      "explanation": "The error message \"')' expected\" indicates a missing closing parenthesis. In Java, method calls like `System.out.println()` require a closing parenthesis after all arguments have been provided. The original code was missing the `)` at the end of the `println` statement.",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!\");\n    }\n}"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!);\n    }\n}",
+      "error": "Main.java:4: error: unclosed string literal\n        System.out.println(\"Hello, World!);\n                           ^\n1 error",
+      "explanation": "The error \"unclosed string literal\" occurs because the string argument passed to `System.out.println()` was opened with a double quote but was not properly closed. In Java, all string literals must start and end with a double quote (`\"`). The original code was missing the closing double quote after `World!`, leading the compiler to believe the string was still open.",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!\");\n    }\n}"
+    },
+    {
+      "code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
+      "error": "Main.java:1: error: illegal character: '#'\n#include <stdio.h>\n^\nMain.java:1: error: class, interface, enum, or record expected\n#include <stdio.h>\n         ^\nMain.java:5: error: class, interface, enum, or record expected\n    return 0;\n    ^\nMain.java:6: error: class, interface, enum, or record expected\n}\n^\n4 errors",
+      "explanation": "The provided code is written in C, not Java. Java code requires all executable statements to be part of a class. The `#include <stdio.h>` directive is a C preprocessor command and is not valid in Java. Similarly, `printf` is a C function; in Java, `System.out.println()` is used for printing output. The `main` method signature in Java is `public static void main(String[] args)`, and it does not return an integer value like in C.",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}"
     }
   ]
 }
