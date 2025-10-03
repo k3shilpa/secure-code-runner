@@ -15,7 +15,7 @@ function App() {
   };
 
   const [language, setLanguage] = useState("python");
-  const [editorLang, setEditorLang] = useState("python"); // Monaco editor syntax
+  const [editorLang, setEditorLang] = useState("python"); 
   const [code, setCode] = useState(templates.python);
   const [stdin, setStdin] = useState("");
   const [stdout, setStdout] = useState("");
@@ -23,8 +23,8 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [aiExplanation, setAiExplanation] = useState("");
   const [aiFixedCode, setAiFixedCode] = useState("");
-  const [detectedLang, setDetectedLang] = useState(""); // for auto-detect
-  const [autoLoaded, setAutoLoaded] = useState(false); // track template auto-load
+  const [detectedLang, setDetectedLang] = useState("");
+  const [autoLoaded, setAutoLoaded] = useState(false);
 
   const editorRef = useRef(null);
 
@@ -35,30 +35,16 @@ function App() {
     setStderr("");
     setAiExplanation("");
     setAiFixedCode("");
-    setDetectedLang("");
 
     try {
       const response = await axios.post(`${BACKEND_URL}/run`, {
         code,
         stdin,
-        language,
+        language: language === "auto" ? (detectedLang || "python") : language,
       });
 
       setStdout(response.data.stdout || "");
       setStderr(response.data.stderr || "");
-
-      // Auto-detect handling
-      if (language === "auto" && response.data.detected_language) {
-        const detected = response.data.detected_language;
-        setDetectedLang(detected);
-        setLanguage(detected);
-        setEditorLang(detected === "cpp" ? "cpp" : detected);
-
-        if (!code.trim() || autoLoaded) {
-          setCode(templates[detected] || code);
-          setAutoLoaded(true);
-        }
-      }
     } catch (err) {
       setStderr("⚠️ Backend error: " + err.message);
     } finally {
@@ -73,7 +59,7 @@ function App() {
       const response = await axios.post(`${BACKEND_URL}/suggest_inline`, {
         code,
         stderr,
-        language,
+        language: language === "auto" ? (detectedLang || "python") : language,
       });
 
       const fixedCode = response.data.fixed_code || code;
@@ -82,7 +68,6 @@ function App() {
       setAiExplanation(explanation);
       setAiFixedCode(fixedCode);
 
-      // ✅ Update Monaco editor code directly
       setCode(fixedCode);
       if (editorRef.current) {
         editorRef.current.setValue(fixedCode);
@@ -105,25 +90,43 @@ function App() {
     setAiExplanation("");
     setAiFixedCode("");
     setDetectedLang("");
-    setEditorLang(newLang === "cpp" ? "cpp" : newLang);
 
-    // Load template only if code is empty
-    if (!code.trim()) {
-      setCode(templates[newLang] || "");
-      setAutoLoaded(true);
-    } else {
-      setAutoLoaded(false);
+    if (newLang !== "auto") {
+      setEditorLang(newLang === "cpp" ? "cpp" : newLang);
+
+      if (!code.trim()) {
+        setCode(templates[newLang] || "");
+        setAutoLoaded(true);
+      } else {
+        setAutoLoaded(false);
+      }
     }
   };
 
-  // Keep Monaco syntax updated for auto-detect
+  // === Auto-detect when code changes ===
   useEffect(() => {
-    if (language === "auto" && detectedLang) {
-      setEditorLang(detectedLang === "cpp" ? "cpp" : detectedLang);
-    } else {
-      setEditorLang(language === "cpp" ? "cpp" : language);
-    }
-  }, [language, detectedLang]);
+    const detectLang = async () => {
+      if (language !== "auto") return;
+      try {
+        const res = await axios.post(`${BACKEND_URL}/detect_language`, {
+          code,
+          auto_loaded: autoLoaded,
+        });
+        const detected = res.data.language;
+        setDetectedLang(detected);
+        setEditorLang(detected === "cpp" ? "cpp" : detected);
+
+        if (res.data.load_template && res.data.template) {
+          setCode(res.data.template);
+          setAutoLoaded(true);
+        }
+      } catch (err) {
+        console.error("Detection failed:", err.message);
+      }
+    };
+
+    detectLang();
+  }, [code, language, autoLoaded]);
 
   return (
     <div className="app-root">
@@ -152,7 +155,6 @@ function App() {
               )}
             </div>
 
-            {/* Show detected language if auto mode */}
             {language === "auto" && detectedLang && (
               <div className="detected-lang">
                 <strong>Detected Language:</strong> {detectedLang}

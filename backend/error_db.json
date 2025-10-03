@@ -835,6 +835,12 @@
       "error": "user_code.c:1:3: error: invalid preprocessing directive #Python\n    1 | # Python Example\n      |   ^~~~~~\nuser_code.c:2:7: error: expected declaration specifiers or '...' before string constant\n    2 | print(\"Hello, World!\")\n      |       ^~~~~~~~~~~~~~~",
       "explanation": "The provided code is written in Python, but it's being compiled as C code. C compilers cannot understand Python syntax. The `# Python Example` line is interpreted as an invalid preprocessor directive in C, and `print(\"Hello, World!\")` is not a valid C function call. To fix this, the code needs to be rewritten using C syntax for printing output.",
       "fixed_code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+      "error": "user_code.c:1:1: error: unknown type name 'public'\n    1 | public class Main {\n      | ^~~~~~\nuser_code.c:1:14: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'Main'\n    1 | public class Main {\n      |              ^~~~",
+      "explanation": "The provided code is written in Java syntax, but the error messages indicate that it is being compiled by a C compiler. C does not recognize keywords like `public`, `class`, `static`, `void main(String[] args)`, or `System.out.println`. To fix this, the code needs to be rewritten using standard C syntax for a 'Hello, World!' program.",
+      "fixed_code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
     }
   ],
   "cpp": [
@@ -1318,6 +1324,18 @@
       "code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}",
       "error": "Main.java:1: error: illegal character: '#'\n#include <stdio.h>\n^\nMain.java:1: error: class, interface, enum, or record expected\n#include <stdio.h>\n         ^\nMain.java:5: error: class, interface, enum, or record expected\n    return 0;\n    ^\nMain.java:6: error: class, interface, enum, or record expected\n}\n^\n4 errors",
       "explanation": "The provided code is written in C, not Java. Java code requires all executable statements to be part of a class. The `#include <stdio.h>` directive is a C preprocessor command and is not valid in Java. Similarly, `printf` is a C function; in Java, `System.out.println()` is used for printing output. The `main` method signature in Java is `public static void main(String[] args)`, and it does not return an integer value like in C.",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+      "error": "File \"/workspace/user_code.py\", line 1\n    public class Main {\n           ^\nSyntaxError: invalid syntax",
+      "explanation": "```json\n{\n  \"explanation\": \"The error `SyntaxError: invalid syntax` occurs because the provided code, which is written",
+      "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n// \u2705 Fixed suggestion"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}\n// \u2705 Fixed suggestion",
+      "error": "\u26a0\ufe0f Backend error: Network Error",
+      "explanation": "The provided Java code is syntactically correct and functionally sound for printing 'Hello, World!'. The '\u26a0\ufe0f Backend error: Network Error' indicates an issue with the environment or network connectivity where the code was being executed or compiled, rather than an error within the Java code itself. Therefore, no changes are needed for the Java code.",
       "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}"
     }
   ]
