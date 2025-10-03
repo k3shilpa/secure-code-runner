@@ -25,6 +25,7 @@ function App() {
   const [aiFixedCode, setAiFixedCode] = useState("");
   const [detectedLang, setDetectedLang] = useState("");
   const [autoLoaded, setAutoLoaded] = useState(false);
+  const [history, setHistory] = useState([]);
 
   const editorRef = useRef(null);
 
@@ -128,13 +129,68 @@ function App() {
     detectLang();
   }, [code, language, autoLoaded]);
 
+  // === Save code to backend ===
+  const saveCode = async () => {
+    try {
+      await axios.post(`${BACKEND_URL}/save_code`, {
+        code,
+        language: language === "auto" ? (detectedLang || "python") : language,
+        stdout,
+        stderr,
+        ai_explanation: aiExplanation,
+        ai_fixed_code: aiFixedCode,
+      });
+      alert("Code saved successfully!");
+      loadHistory();
+    } catch (err) {
+      alert("Failed to save code: " + err.message);
+    }
+  };
+
+  // === Load history from backend ===
+  const loadHistory = async () => {
+    try {
+      const res = await axios.get(`${BACKEND_URL}/history`);
+      setHistory(res.data || []);
+    } catch (err) {
+      console.error("Failed to load history:", err.message);
+    }
+  };
+
+  useEffect(() => {
+    loadHistory();
+  }, []);
+
   return (
     <div className="app-root">
       <div className="navbar">
         <span className="logo">ai-secure-code-runner</span>
       </div>
       <div className="workspace">
-        <div className="sidebar">Sidebar (future features)</div>
+        <div className="sidebar">
+          <button onClick={loadHistory}>🔄 Refresh History</button>
+          <h3>Previous Codes</h3>
+          {history.length === 0 && <p>No saved code yet.</p>}
+          <ul>
+            {history.map((item) => (
+              <li key={item.id}>
+                <button
+                  onClick={() => {
+                    setCode(item.code);
+                    setLanguage(item.language);
+                    setEditorLang(item.language === "cpp" ? "cpp" : item.language);
+                    setStdout(item.stdout);
+                    setStderr(item.stderr);
+                    setAiExplanation(item.ai_explanation);
+                    setAiFixedCode(item.ai_fixed_code);
+                  }}
+                >
+                  {item.language} - ID {item.id}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div className="editor-console">
           <div className="editor-section">
@@ -153,6 +209,8 @@ function App() {
               {stderr && (
                 <button onClick={handleApplyFix}>🛠 Apply Fix</button>
               )}
+
+              <button onClick={saveCode}>💾 Save Code</button>
             </div>
 
             {language === "auto" && detectedLang && (

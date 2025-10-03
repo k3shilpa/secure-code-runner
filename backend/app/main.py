@@ -2,7 +2,7 @@
 import os, subprocess, tempfile, uuid, shutil, re, json
 from pathlib import Path
 from typing import Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
@@ -14,6 +14,11 @@ from google.genai import types
 # === Language Detection ===
 from pygments.lexers import guess_lexer
 from pygments.util import ClassNotFound
+
+# === SQLAlchemy for DB ===
+from sqlalchemy import create_engine, Column, Integer, String, Text
+from sqlalchemy.orm import sessionmaker, declarative_base, Session
+
 
 # ==============================
 # ENV + INIT
@@ -31,6 +36,36 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+# ==============================
+# Database Setup
+# ==============================
+DATABASE_URL = "sqlite:///./code_runner.db"  # Local SQLite DB
+
+engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class CodeHistory(Base):
+    __tablename__ = "code_history"
+    id = Column(Integer, primary_key=True, index=True)
+    code = Column(Text)
+    language = Column(String(20))
+    stdout = Column(Text)
+    stderr = Column(Text)
+    ai_explanation = Column(Text)
+    ai_fixed_code = Column(Text)
+
+Base.metadata.create_all(bind=engine)
+
+# Dependency
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 # ==============================
 # Schemas
 # ==============================
@@ -47,6 +82,14 @@ class SuggestRequest(BaseModel):
 class DetectRequest(BaseModel):
     code: str
     auto_loaded: bool = False
+
+class SaveCodeRequest(BaseModel):
+    code: str
+    language: str
+    stdout: str = ""
+    stderr: str = ""
+    ai_explanation: Optional[str] = ""
+    ai_fixed_code: Optional[str] = ""
 
 # ==============================
 # Error Database
@@ -285,6 +328,45 @@ def run_code(request: CodeRequest):
         return {"stdout":"","stderr":"Execution timed out","exit_code":-1}
     finally:
         shutil.rmtree(workdir, ignore_errors=True)
+
+# ==============================
+# Save Code to DB
+# ==============================
+@app.post("/save_code")
+def save_code(request: SaveCodeRequest, db: Session = Depends(get_db)):
+    entry = CodeHistory(
+        code=request.code,
+        language=request.language,
+        stdout=request.stdout,
+        stderr=request.stderr,
+        ai_explanation=request.ai_explanation or "",
+        ai_fixed_code=request.ai_fixed_code or ""
+    )
+    db.add(entry)
+    db.commit()
+    db.refresh(entry)
+    return {"message": "Code saved successfully", "id": entry.id}
+
+# ==============================
+# Load Previous Codes
+# ==============================
+@app.get("/history")
+def load_history(language: Optional[str] = None, db: Session = Depends(get_db)):
+    query = db.query(CodeHistory)
+    if language:
+        query = query.filter(CodeHistory.language == language)
+    entries = query.order_by(CodeHistory.id.desc()).limit(50).all()
+    return [
+        {
+            "id": e.id,
+            "code": e.code,
+            "language": e.language,
+            "stdout": e.stdout,
+            "stderr": e.stderr,
+            "ai_explanation": e.ai_explanation,
+            "ai_fixed_code": e.ai_fixed_code
+        } for e in entries
+    ]
 
 # ==============================
 # Suggest Fix
