@@ -7,6 +7,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
+
 # === Google GenAI SDK ===
 from google import genai
 from google.genai import types
@@ -19,7 +20,10 @@ from pygments.util import ClassNotFound
 from sqlalchemy import create_engine, Column, Integer, String, Text
 from sqlalchemy.orm import sessionmaker, declarative_base, Session
 
-
+import models
+from models import CodeSnippet
+import database
+from database import Base
 # ==============================
 # ENV + INIT
 # ==============================
@@ -44,19 +48,20 @@ DATABASE_URL = "sqlite:///./code_runner.db"  # Local SQLite DB
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
 
-class CodeHistory(Base):
-    __tablename__ = "code_history"
-    id = Column(Integer, primary_key=True, index=True)
-    code = Column(Text)
-    language = Column(String(20))
-    stdout = Column(Text)
-    stderr = Column(Text)
-    ai_explanation = Column(Text)
-    ai_fixed_code = Column(Text)
+
+
 
 Base.metadata.create_all(bind=engine)
+
+class CodeSnippetCreate(BaseModel):
+    filename: str
+    language: str
+    code: str
+    stdout: Optional[str] = ""
+    stderr: Optional[str] = ""
+    ai_explanation: Optional[str] = ""
+    ai_fixed_code: Optional[str] = ""
 
 # Dependency
 def get_db():
@@ -84,6 +89,7 @@ class DetectRequest(BaseModel):
     auto_loaded: bool = False
 
 class SaveCodeRequest(BaseModel):
+    filename: str = "untitled"
     code: str
     language: str
     stdout: str = ""
@@ -333,40 +339,45 @@ def run_code(request: CodeRequest):
 # Save Code to DB
 # ==============================
 @app.post("/save_code")
-def save_code(request: SaveCodeRequest, db: Session = Depends(get_db)):
-    entry = CodeHistory(
-        code=request.code,
-        language=request.language,
-        stdout=request.stdout,
-        stderr=request.stderr,
-        ai_explanation=request.ai_explanation or "",
-        ai_fixed_code=request.ai_fixed_code or ""
+def save_code(data: CodeSnippetCreate, db: Session = Depends(get_db)):
+    snippet = CodeSnippet(
+        filename=data.filename,
+        language=data.language,
+        code=data.code,
+        stdout=data.stdout,
+        stderr=data.stderr,
+        ai_explanation=data.ai_explanation,
+        ai_fixed_code=data.ai_fixed_code
     )
-    db.add(entry)
+    db.add(snippet)
     db.commit()
-    db.refresh(entry)
-    return {"message": "Code saved successfully", "id": entry.id}
+    db.refresh(snippet)
+    return snippet
+
+
 
 # ==============================
 # Load Previous Codes
 # ==============================
 @app.get("/history")
 def load_history(language: Optional[str] = None, db: Session = Depends(get_db)):
-    query = db.query(CodeHistory)
+    query = db.query(CodeSnippet)
     if language:
-        query = query.filter(CodeHistory.language == language)
-    entries = query.order_by(CodeHistory.id.desc()).limit(50).all()
+        query = query.filter(CodeSnippet.language == language)
+    entries = query.order_by(CodeSnippet.id.desc()).limit(50).all()
     return [
-        {
-            "id": e.id,
-            "code": e.code,
-            "language": e.language,
-            "stdout": e.stdout,
-            "stderr": e.stderr,
-            "ai_explanation": e.ai_explanation,
-            "ai_fixed_code": e.ai_fixed_code
-        } for e in entries
-    ]
+    {
+        "id": e.id,
+        "filename": e.filename,
+        "code": e.code,
+        "language": e.language,
+        "stdout": e.stdout,
+        "stderr": e.stderr,
+        "ai_explanation": e.ai_explanation,
+        "ai_fixed_code": e.ai_fixed_code
+    } for e in entries
+]
+
 
 # ==============================
 # Suggest Fix

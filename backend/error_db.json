@@ -841,6 +841,12 @@
       "error": "user_code.c:1:1: error: unknown type name 'public'\n    1 | public class Main {\n      | ^~~~~~\nuser_code.c:1:14: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'Main'\n    1 | public class Main {\n      |              ^~~~",
       "explanation": "The provided code is written in Java syntax, but the error messages indicate that it is being compiled by a C compiler. C does not recognize keywords like `public`, `class`, `static`, `void main(String[] args)`, or `System.out.println`. To fix this, the code needs to be rewritten using standard C syntax for a 'Hello, World!' program.",
       "fixed_code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
+    },
+    {
+      "code": "public class Main {\n    public static void main(String[] args) {\n        // Java Example\n        System.out.println(\"Hello, World!\");\n    }\n}",
+      "error": "user_code.c:1:1: error: unknown type name 'public'\n    1 | public class Main {\n      | ^~~~~~\nuser_code.c:1:14: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'Main'\n    1 | public class Main {\n      |              ^~~~",
+      "explanation": "The provided code is written in Java, but the error messages indicate that it's being compiled or interpreted as C code. C does not have keywords like `public`, `class`, `static`, `void main(String[] args)`, or `System.out.println`. The C equivalent for printing 'Hello, World!' involves including `stdio.h` and using the `printf` function within a `main` function.",
+      "fixed_code": "#include <stdio.h>\n\nint main() {\n    printf(\"Hello, World!\\n\");\n    return 0;\n}"
     }
   ],
   "cpp": [
@@ -1337,6 +1343,24 @@
       "error": "\u26a0\ufe0f Backend error: Network Error",
       "explanation": "The provided Java code is syntactically correct and functionally sound for printing 'Hello, World!'. The '\u26a0\ufe0f Backend error: Network Error' indicates an issue with the environment or network connectivity where the code was being executed or compiled, rather than an error within the Java code itself. Therefore, no changes are needed for the Java code.",
       "fixed_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}"
+    },
+    {
+      "code": "# Program to add two matrices using list comprehension\n\nX = [[12,7,3],\n    [4 ,5,6],\n    [7 ,8,9]]\n\nY = [[5,8,1],\n    [6,7,3],\n    [4,5,9]]\n\nresult = [[X[i][j] + Y[i][j]  for j in range(len(X[0]))] for i in range(len(X))]\n\nfor r in result:\n   print(r)",
+      "error": "Main.java:1: error: illegal character: '#'\n# Program to add two matrices using list comprehension\n^\nMain.java:1: error: class, interface, enum, or record expected\n# Program to add two matrices using list comprehension\n          ^\n2 errors",
+      "explanation": "```json\n{\n  \"explanation\": \"",
+      "fixed_code": "# Program to add two matrices using list comprehension\n\nX = [[12,7,3],\n    [4 ,5,6],\n    [7 ,8,9]]\n\nY = [[5,8,1],\n    [6,7,3],\n    [4,5,9]]\n\nresult = [[X[i][j] + Y[i][j]  for j in range(len(X[0]))] for i in range(len(X))]\n\nfor r in result:\n   print(r)\n// \u2705 Fixed suggestion"
+    },
+    {
+      "code": "#include <iostream>\nusing namespace std;\nint main(){cout<<\"Hello, World!\"<<endl;return 0;}",
+      "error": "Main.java:1: error: illegal character: '#'\n#include <iostream>\n^\nMain.java:1: error: class, interface, enum, or record expected\n#include <iostream>\n         ^\nMain.java:3: error: class, interface, enum, or record expected\nint main(){cout<<\"Hello, World!\"<<endl;return 0;}\n^\nMain.java:3: error: class, interface, enum, or record expected\nint main(){cout<<\"Hello, World!\"<<endl;return 0;}\n                                       ^\nMain.java:3: error: class, interface, enum, or record expected\nint main(){cout<<\"Hello, World!\"<<endl;return 0;}\n                                                ^\n5 errors",
+      "explanation": "```json\n{\n  \"explanation\": \"The provided code is written in C++ syntax, but the error messages indicate that it is being compiled by a Java compiler. Java and C++ are distinct programming languages with different syntax, structure, and standard libraries. Java code must be encapsulated within a class, and the entry point for execution is a `public static void main(String[] args)` method. The C++ `#include`, `using namespace std;`, `cout`, and `endl` constructs have no direct equivalent in Java and cause compilation errors when treated as Java code.\",\n  \"fixed_code\": \"public class Main {\\n    public static void main(String[] args) {\\n        System.out.println(\\\"Hello, World!\\\");\\n    }\\n}\"",
+      "fixed_code": "#include <iostream>\nusing namespace std;\nint main(){cout<<\"Hello, World!\"<<endl;return 0;}\n// \u2705 Fixed suggestion"
+    },
+    {
+      "code": "public class Main { public static void main(String[] args){ System.out.println(x); } }",
+      "error": "error: cannot find symbol\nsymbol: variable x",
+      "explanation": "```json\n{\n  \"explanation\": \"The",
+      "fixed_code": "public class Main { public static void main(String[] args){ System.out.println(x); } }\n// \u2705 Fixed suggestion"
     }
   ]
 }
