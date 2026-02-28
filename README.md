@@ -18,11 +18,12 @@ This project aims to demonstrate secure system design, backend engineering skill
 ---
 
 ## 🛠 Tech Stack
-- **Backend:** Python (Flask / FastAPI)
+- **Backend:** Python (FastAPI)
+- **Frontend:** React.js
 - **Containerization:** Docker
-- **AI / Analysis:** Rule-based logic / ML model integration (extendable)
+- **AI / Analysis:** Rule-based logic / Gemini API
 - **Execution Environment:** Linux-based Docker containers
-- **Tools:** Git, Docker CLI
+- **Tools:** Docker CLI
 
 ---
 
